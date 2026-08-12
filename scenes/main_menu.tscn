@@ -1,0 +1,141 @@
+[gd_scene load_steps=2 format=3 uid="uid://menu001"]
+
+[ext_resource type="Script" uid="uid://jvvw8y15djr8" path="res://scripts/main_menu.gd" id="1_menu"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_menu")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.12, 0.11, 0.15, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="TitleContainer" type="VBoxContainer" parent="CenterContainer/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="CenterContainer/VBox/TitleContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.95, 1, 1)
+theme_override_font_sizes/font_size = 64
+text = "Quantum Chess"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="CenterContainer/VBox/TitleContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6, 0.6, 0.7, 1)
+theme_override_font_sizes/font_size = 18
+text = "Chess with Superposition & Entanglement"
+horizontal_alignment = 1
+
+[node name="ButtonsContainer" type="VBoxContainer" parent="CenterContainer/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="PlayButton" type="Button" parent="CenterContainer/VBox/ButtonsContainer"]
+custom_minimum_size = Vector2(280, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 24
+text = "▶  Play"
+
+[node name="SettingsButton" type="Button" parent="CenterContainer/VBox/ButtonsContainer"]
+custom_minimum_size = Vector2(280, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 24
+text = "⚙  Settings"
+
+[node name="QuitButton" type="Button" parent="CenterContainer/VBox/ButtonsContainer"]
+custom_minimum_size = Vector2(280, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 24
+text = "✕  Quit"
+
+[node name="VersionLabel" type="Label" parent="CenterContainer/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.4, 0.45, 1)
+theme_override_font_sizes/font_size = 14
+text = "v0.1.0"
+horizontal_alignment = 1
+
+[node name="SettingsPopup" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Overlay" type="ColorRect" parent="SettingsPopup"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.7)
+
+[node name="PopupContainer" type="CenterContainer" parent="SettingsPopup"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="PanelContainer" parent="SettingsPopup/PopupContainer"]
+custom_minimum_size = Vector2(350, 250)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="SettingsPopup/PopupContainer/Panel"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="Title" type="Label" parent="SettingsPopup/PopupContainer/Panel/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "⚙ Settings"
+horizontal_alignment = 1
+
+[node name="OptionsContainer" type="VBoxContainer" parent="SettingsPopup/PopupContainer/Panel/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="InfoLabel" type="Label" parent="SettingsPopup/PopupContainer/Panel/VBox/OptionsContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6, 0.6, 0.65, 1)
+theme_override_font_sizes/font_size = 16
+text = "More settings coming soon..."
+horizontal_alignment = 1
+
+[node name="CloseButton" type="Button" parent="SettingsPopup/PopupContainer/Panel/VBox"]
+custom_minimum_size = Vector2(150, 45)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 18
+text = "Close"

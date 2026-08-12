@@ -1,0 +1,106 @@
+[gd_scene load_steps=2 format=3 uid="uid://b8y4g5h6j7k8"]
+
+[ext_resource type="Script" path="res://scripts/pregame_setup_menu.gd" id="1_a2b3c"]
+
+[node name="PregameSetupMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_a2b3c")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.12549, 0.12549, 0.145098, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="PanelContainer" parent="CenterContainer"]
+custom_minimum_size = Vector2(400, 300)
+layout_mode = 2
+
+[node name="Margin" type="MarginContainer" parent="CenterContainer/Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBox" type="VBoxContainer" parent="CenterContainer/Panel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Title" type="Label" parent="CenterContainer/Panel/Margin/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Game Setup"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/Panel/Margin/VBox"]
+layout_mode = 2
+
+[node name="Grid" type="GridContainer" parent="CenterContainer/Panel/Margin/VBox"]
+layout_mode = 2
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 15
+columns = 2
+
+[node name="TimeLabel" type="Label" parent="CenterContainer/Panel/Margin/VBox/Grid"]
+layout_mode = 2
+text = "Time Control:"
+
+[node name="TimeControlOption" type="OptionButton" parent="CenterContainer/Panel/Margin/VBox/Grid"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ModeLabel" type="Label" parent="CenterContainer/Panel/Margin/VBox/Grid"]
+layout_mode = 2
+text = "Game Mode:"
+
+[node name="GameModeOption" type="OptionButton" parent="CenterContainer/Panel/Margin/VBox/Grid"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CustomTimeLabel" type="Label" parent="CenterContainer/Panel/Margin/VBox/Grid"]
+visible = false
+layout_mode = 2
+text = "Minutes:"
+
+[node name="CustomTimeSpinBox" type="SpinBox" parent="CenterContainer/Panel/Margin/VBox/Grid"]
+visible = false
+layout_mode = 2
+min_value = 1.0
+max_value = 120.0
+value = 10.0
+
+[node name="Spacer" type="Control" parent="CenterContainer/Panel/Margin/VBox"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="Buttons" type="HBoxContainer" parent="CenterContainer/Panel/Margin/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="BackButton" type="Button" parent="CenterContainer/Panel/Margin/VBox/Buttons"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Back"
+
+[node name="StartButton" type="Button" parent="CenterContainer/Panel/Margin/VBox/Buttons"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Start Game"

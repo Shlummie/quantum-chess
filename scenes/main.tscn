@@ -1,0 +1,288 @@
+[gd_scene load_steps=4 format=3 uid="uid://main001"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_main"]
+[ext_resource type="PackedScene" path="res://scenes/board.tscn" id="2_board"]
+[ext_resource type="Script" path="res://scripts/game_manager.gd" id="3_manager"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_main")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.15, 0.14, 0.18, 1)
+
+[node name="Board" parent="." instance=ExtResource("2_board")]
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="TurnLabel" type="Label" parent="UI"]
+offset_left = 560.0
+offset_top = 30.0
+offset_right = 720.0
+offset_bottom = 60.0
+theme_override_font_sizes/font_size = 28
+text = "White's Turn"
+horizontal_alignment = 1
+
+[node name="HintLabel" type="Label" parent="UI"]
+offset_left = 420.0
+offset_top = 680.0
+offset_right = 860.0
+offset_bottom = 710.0
+theme_override_colors/font_color = Color(0.5, 0.5, 0.55, 1)
+theme_override_font_sizes/font_size = 14
+text = "Right-click a piece to split it into quantum superposition"
+horizontal_alignment = 1
+
+[node name="MoveHistoryPanel" type="PanelContainer" parent="UI"]
+offset_left = 700.0
+offset_top = 80.0
+offset_right = 900.0
+offset_bottom = 720.0
+mouse_filter = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/MoveHistoryPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBox" type="VBoxContainer" parent="UI/MoveHistoryPanel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Title" type="Label" parent="UI/MoveHistoryPanel/MarginContainer/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+theme_override_colors/font_color = Color(0.8, 0.8, 0.85, 1)
+text = "Move History"
+horizontal_alignment = 1
+
+[node name="Separator" type="HSeparator" parent="UI/MoveHistoryPanel/MarginContainer/VBox"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/MoveHistoryPanel/MarginContainer/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="MoveList" type="VBoxContainer" parent="UI/MoveHistoryPanel/MarginContainer/VBox/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+
+[node name="SettingsButton" type="Button" parent="UI"]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 70.0
+offset_bottom = 70.0
+theme_override_font_sizes/font_size = 28
+text = "⚙"
+
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource("3_manager")
+
+[node name="ProbabilityPopup" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Overlay" type="ColorRect" parent="ProbabilityPopup"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.7)
+
+[node name="PopupContainer" type="CenterContainer" parent="ProbabilityPopup"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="PanelContainer" parent="ProbabilityPopup/PopupContainer"]
+custom_minimum_size = Vector2(450, 250)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="ProbabilityPopup/PopupContainer/Panel"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Title" type="Label" parent="ProbabilityPopup/PopupContainer/Panel/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "⚛ Quantum Capture"
+horizontal_alignment = 1
+
+[node name="Info" type="Label" parent="ProbabilityPopup/PopupContainer/Panel/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Attacker: ½ Pawn → 50% success
+Defender: ¼ Knight → 25% dodge"
+horizontal_alignment = 1
+
+[node name="RollButton" type="Button" parent="ProbabilityPopup/PopupContainer/Panel/VBox"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 20
+text = "🎲 Roll!"
+
+[node name="PromotionPopup" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Overlay" type="ColorRect" parent="PromotionPopup"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.7)
+
+[node name="PopupContainer" type="CenterContainer" parent="PromotionPopup"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="PanelContainer" parent="PromotionPopup/PopupContainer"]
+custom_minimum_size = Vector2(350, 180)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="PromotionPopup/PopupContainer/Panel"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Title" type="Label" parent="PromotionPopup/PopupContainer/Panel/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Promote Pawn"
+horizontal_alignment = 1
+
+[node name="ButtonsContainer" type="HBoxContainer" parent="PromotionPopup/PopupContainer/Panel/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="QueenButton" type="Button" parent="PromotionPopup/PopupContainer/Panel/VBox/ButtonsContainer"]
+custom_minimum_size = Vector2(65, 65)
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "♕"
+
+[node name="RookButton" type="Button" parent="PromotionPopup/PopupContainer/Panel/VBox/ButtonsContainer"]
+custom_minimum_size = Vector2(65, 65)
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "♖"
+
+[node name="BishopButton" type="Button" parent="PromotionPopup/PopupContainer/Panel/VBox/ButtonsContainer"]
+custom_minimum_size = Vector2(65, 65)
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "♗"
+
+[node name="KnightButton" type="Button" parent="PromotionPopup/PopupContainer/Panel/VBox/ButtonsContainer"]
+custom_minimum_size = Vector2(65, 65)
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "♘"
+
+[node name="SettingsPopup" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Overlay" type="ColorRect" parent="SettingsPopup"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.7)
+
+[node name="PopupContainer" type="CenterContainer" parent="SettingsPopup"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="PanelContainer" parent="SettingsPopup/PopupContainer"]
+custom_minimum_size = Vector2(300, 200)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="SettingsPopup/PopupContainer/Panel"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Title" type="Label" parent="SettingsPopup/PopupContainer/Panel/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "⚙ Settings"
+horizontal_alignment = 1
+
+[node name="ButtonsContainer" type="VBoxContainer" parent="SettingsPopup/PopupContainer/Panel/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="RestartButton" type="Button" parent="SettingsPopup/PopupContainer/Panel/VBox/ButtonsContainer"]
+custom_minimum_size = Vector2(200, 45)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 18
+text = "↻ Restart Game"
+
+[node name="MainMenuButton" type="Button" parent="SettingsPopup/PopupContainer/Panel/VBox/ButtonsContainer"]
+custom_minimum_size = Vector2(200, 45)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 18
+text = "⌂ Main Menu"
+
+[node name="CloseButton" type="Button" parent="SettingsPopup/PopupContainer/Panel/VBox/ButtonsContainer"]
+custom_minimum_size = Vector2(200, 45)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 18
+text = "✕ Close"
